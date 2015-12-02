@@ -28,7 +28,9 @@
         font-size: 18px;
         text-align: left;
     }
-
+    .search-results-products .social-buttons, .woocommerce-pagination {
+        display: none;
+    }
 }
 /*md*/
 @media (max-width: 767px) {

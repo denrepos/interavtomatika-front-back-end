@@ -205,3 +205,88 @@ function getSize($file){
     }
     return sprintf('%.2f '.$s[$e], ($bytes/pow(1024, floor($e))));
 }
+
+load_theme_textdomain( 'interavtomatika', TEMPLATEPATH . '/languages' );
+
+
+
+function show_breadcrumbs($id,$taxonomy,$before = array()){
+
+    $before = $before['name'] ? '<li><a href="'.$before['href'].'">'.$before['name'].'</a></li>' : '';
+
+    $html = '<ul class="breadcrumbs"><li><a href="'.home_url().'" class="bc-home"></a></li>'.$before;
+
+    $obj = wp_get_object_terms( $id, $taxonomy );
+
+    if($obj) {
+
+        $id = $obj[0]->parent;
+
+        $tmp = '<li><span>' . $obj[0]->name . '</span></li>';
+
+    }else{
+
+        $obj = get_term_by( 'id', $id, $taxonomy );
+        $id = $obj->parent;
+
+        $tmp = '<li><span>'.$obj->name.'</span></li>';
+    }
+
+    while($obj = get_term_by('id', $id, $taxonomy )){
+
+        $name = $obj->name;
+        $href = get_term_link($id,$taxonomy);
+
+        $tmp = '<li><a href="'.$href.'">'.$name.'</a></li>'.$tmp;
+
+        $id = $obj->parent;
+
+    }
+
+    echo $html.$tmp.'</ul>';
+}
+
+// add custom field in admin panel
+add_action('admin_init', 'additional_general_section');
+function additional_general_section() {
+    add_settings_section(
+        'additional_settings_section', // Section ID
+        __('Additional options','interavtomatika'), // Section Title
+        'additional_options_callback', // Callback
+        'general' // What Page?  This makes the section show up on the General Settings Page
+    );
+
+    add_settings_field( // Option 1
+        'social_buttons', // Option ID
+        __('Social buttons','interavtomatika').' ('.__('code','interavtomatika').')', // Label
+        'options_textbox_callback', // !important - This is where the args go!
+        'general', // Page it will be displayed (General Settings)
+        'additional_settings_section', // Name of our section
+        array( // The $args
+            'social_buttons' // Should match Option ID
+        )
+    );
+
+    add_settings_field( // Option 2
+        'option_2', // Option ID
+        'Option 2', // Label
+        'options_textbox_callback', // !important - This is where the args go!
+        'general', // Page it will be displayed
+        'additional_settings_section', // Name of our section (General Settings)
+        array( // The $args
+            'option_2' // Should match Option ID
+        )
+    );
+
+    register_setting('general','social_buttons');
+    //register_setting('general','option_2', 'esc_attr');
+}
+
+function additional_options_callback() { // Section Callback
+//    echo '<p>'._e('Social buttons','interavtomatika').'</p>';
+}
+
+function options_textbox_callback($args) {  // Textbox Callback
+    $option = get_option($args[0]);
+    echo '<textarea id="'. $args[0] .'" name="'. $args[0] .'">' . $option . '</textarea>';
+}

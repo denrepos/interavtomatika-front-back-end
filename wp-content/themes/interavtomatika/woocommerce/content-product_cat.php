@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-global $woocommerce_loop;
+global $woocommerce_loop, $post;
 
 ?>
 
@@ -21,11 +21,10 @@ global $woocommerce_loop;
         <?php do_action( 'woocommerce_before_main_content' ); ?>
         <?php do_action( 'woocommerce_archive_description' ); ?>
 
-        <ul class="breadcrumbs">
-            <li><a href="/" class="bc-home"></a></li>
-            <li><a href="#">Автоматика</a></li>
-            <li>Преобразователи электрических сигналов</li>
-        </ul>
+        <?php $term = get_queried_object(); ?>
+        <?php $term_id = $term->term_id; ?>
+<?php print_r($term_id); ?>
+        <?php show_breadcrumbs($term_id,'product_cat'); ?>
 
         <div class="content-aside-wrap">
             <div class="content col-lg-16 col-lg-push-4">

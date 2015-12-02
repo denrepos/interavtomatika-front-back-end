@@ -537,3 +537,9 @@ input:checked+label.custom-radio {
 .malinky-load-more{
     display: none !important;
 }
+.search-results-products .social-buttons {
+    display: inline-block;
+    float: right;
+    margin-top: 18px;
+}
+

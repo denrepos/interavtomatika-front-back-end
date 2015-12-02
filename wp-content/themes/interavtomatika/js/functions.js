@@ -995,8 +995,6 @@ jQuery(function($){
 
 
     //ajax pagination
-
-
     $('.advanced-pagination-all-wrap').bind('DOMNodeInserted', function(e) {
         var length = $(this).find('.advanced-pagination-item').length;
         var first = parseInt($(this).find('.found-title .first').text());

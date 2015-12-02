@@ -4,18 +4,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Storefront 1.5.3\n"
 "Report-Msgid-Bugs-To: https://github.com/woothemes/storefront/issues\n"
-"POT-Creation-Date: 2015-11-03 10:15:14+00:00\n"
+"POT-Creation-Date: 2015-12-02 17:15+0200\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
-"X-Generator: grunt-wp-i18n 0.5.3\n"
+"PO-Revision-Date: 2015-12-02 22:39+0200\n"
+"Language-Team: EMAIL@ADDRESS\n"
+"X-Generator: Poedit 1.8.4\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: ru\n"
 
 #: 404.php:19
 msgid "Oops! That page can&rsquo;t be found."
-msgstr ""
+msgstr "Ой! Это страница не может быть найдена."
 
 #: 404.php:22
 msgid ""
@@ -52,7 +55,8 @@ msgid "Nothing Found"
 msgstr ""
 
 #: content-none.php:19
-msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
 
 #: content-none.php:23
@@ -73,8 +77,8 @@ msgstr ""
 
 #: inc/admin/welcome-screen/sections/contribute.php:12
 msgid ""
-"Found a bug? Want to contribute a patch or create a new feature? %sGitHub "
-"is the place to go!%s Or would you like to translate %s into your language? "
+"Found a bug? Want to contribute a patch or create a new feature? %sGitHub is "
+"the place to go!%s Or would you like to translate %s into your language? "
 "%sGet involved on WordPress.org%s."
 msgstr ""
 
@@ -216,7 +220,8 @@ msgid "Enjoying %s?"
 msgstr ""
 
 #: inc/customizer/controls/more.php:23
-msgid "Why not leave us a review on %sWordPress.org%s?  We'd really appreciate it!"
+msgid ""
+"Why not leave us a review on %sWordPress.org%s?  We'd really appreciate it!"
 msgstr ""
 
 #: inc/customizer/controls.php:24
@@ -373,8 +378,8 @@ msgstr ""
 msgid "Continue reading %s"
 msgstr ""
 
-#: inc/structure/post.php:72 inc/structure/post.php:85
 #. translators: used between list items, there is a space after the comma
+#: inc/structure/post.php:72 inc/structure/post.php:85
 msgid ", "
 msgstr ""
 
@@ -423,6 +428,7 @@ msgid "%d item"
 msgid_plural "%d items"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: inc/woocommerce/template-tags.php:152
 msgid "On Sale Now"
@@ -476,6 +482,7 @@ msgid "One thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: inc/structure/post.php:115
 msgctxt "Next post"
@@ -497,3 +504,22 @@ msgctxt "post author"
 msgid "by %s"
 msgstr ""
 
+# wp-content/themes/interavtomatika/woocommerce/loop/result-count.php
+msgid "RESULTS"
+msgstr "РЕЗУЛЬТАТЫ"
+
+# wp-content/themes/interavtomatika/woocommerce/loop/result-count.php
+msgid "of"
+msgstr "из"
+
+# wp-content/themes/interavtomatika/functions.php:252
+msgid "Social buttons"
+msgstr "Социальные кнопки"
+
+# wp-content/themes/interavtomatika/functions.php:220
+msgid "Additional options"
+msgstr "Дополнительные настройки"
+
+# wp-content/themes/interavtomatika/functions.php:227
+msgid "code"
+msgstr "код"

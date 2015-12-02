@@ -536,6 +536,11 @@ input:checked+label.custom-radio {
 .malinky-load-more{
     display: none !important;
 }
+.search-results-products .social-buttons {
+    display: inline-block;
+    float: right;
+    margin-top: 18px;
+}
 header{
     margin: auto;
     font-size: 12px;
@@ -3567,7 +3572,9 @@ label input:checked + .dummy-checkbox + .item-name{
         font-size: 18px;
         text-align: left;
     }
-
+    .search-results-products .social-buttons, .woocommerce-pagination {
+        display: none;
+    }
 }
 /*md*/
 @media (max-width: 767px) {

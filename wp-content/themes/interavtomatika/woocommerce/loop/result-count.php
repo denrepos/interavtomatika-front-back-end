@@ -31,7 +31,7 @@ if ( ! woocommerce_products_will_display() )
 	} elseif ( $total <= $per_page || -1 == $per_page ) {
 		printf( __( 'Showing all %d results', 'woocommerce' ), $total );
 	} else {
-		echo __( 'РЕЗУЛЬТАТЫ' ).' <span class="first">'.$first.'</span>-<span class="last">'.$last.'</span> '.__('из').' <span class="total">'.$total.'</span>';
+		echo __( 'RESULTS', 'interavtomatika' ).' <span class="first">'.$first.'</span>-<span class="last">'.$last.'</span> '.__('of','interavtomatika').' <span class="total">'.$total.'</span>';
 	}
 	?>
 </h6>
