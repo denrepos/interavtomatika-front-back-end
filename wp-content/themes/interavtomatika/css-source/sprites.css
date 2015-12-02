@@ -1,0 +1,203 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+```html
+<!-- `display: block` sprite -->
+<div class="icon-home"></div>
+
+<!-- `display: inline-block` sprite -->
+<img class="icon-home" />
+```
+*/
+.icon-bc-home {
+  background-image: url(../images/spritesheet.png);
+  background-position: -316px -162px;
+  width: 12px;
+  height: 11px;
+}
+.icon-cart-hover {
+  background-image: url(../images/spritesheet.png);
+  background-position: -275px -94px;
+  width: 41px;
+  height: 41px;
+}
+.icon-carusel-nav-active {
+  background-image: url(../images/spritesheet.png);
+  background-position: -303px -162px;
+  width: 13px;
+  height: 13px;
+}
+.icon-carusel-nav {
+  background-image: url(../images/spritesheet.png);
+  background-position: -290px -162px;
+  width: 13px;
+  height: 13px;
+}
+.icon-cross-close-blue {
+  background-image: url(../images/spritesheet.png);
+  background-position: -339px -162px;
+  width: 11px;
+  height: 11px;
+}
+.icon-cross-close-red {
+  background-image: url(../images/spritesheet.png);
+  background-position: -395px -135px;
+  width: 19px;
+  height: 19px;
+}
+.icon-cross-close-white {
+  background-image: url(../images/spritesheet.png);
+  background-position: -350px -162px;
+  width: 11px;
+  height: 11px;
+}
+.icon-cross-close {
+  background-image: url(../images/spritesheet.png);
+  background-position: -328px -162px;
+  width: 11px;
+  height: 11px;
+}
+.icon-empty-cart {
+  background-image: url(../images/spritesheet.png);
+  background-position: -366px -135px;
+  width: 29px;
+  height: 21px;
+}
+.icon-flags {
+  background-image: url(../images/spritesheet.png);
+  background-position: 0px -84px;
+  width: 26px;
+  height: 382px;
+}
+.icon-full-cart {
+  background-image: url(../images/spritesheet.png);
+  background-position: -337px -135px;
+  width: 29px;
+  height: 21px;
+}
+.icon-grey-star {
+  background-image: url(../images/spritesheet.png);
+  background-position: -440px -74px;
+  width: 18px;
+  height: 16px;
+}
+.icon-grey-stars {
+  background-image: url(../images/spritesheet.png);
+  background-position: -344px -57px;
+  width: 96px;
+  height: 17px;
+}
+.icon-left-rewind-blue {
+  background-image: url(../images/spritesheet.png);
+  background-position: -316px -94px;
+  width: 35px;
+  height: 35px;
+}
+.icon-left-rewind-grey {
+  background-image: url(../images/spritesheet.png);
+  background-position: -351px -94px;
+  width: 35px;
+  height: 35px;
+}
+.icon-maestro {
+  background-image: url(../images/spritesheet.png);
+  background-position: -275px -57px;
+  width: 69px;
+  height: 37px;
+}
+.icon-mastercard {
+  background-image: url(../images/spritesheet.png);
+  background-position: -275px -20px;
+  width: 69px;
+  height: 37px;
+}
+.icon-pay-system {
+  background-image: url(../images/spritesheet.png);
+  background-position: -275px 0px;
+  width: 183px;
+  height: 20px;
+}
+.icon-price-banner-label-long {
+  background-image: url(../images/spritesheet.png);
+  background-position: -121px 0px;
+  width: 154px;
+  height: 55px;
+}
+.icon-price-banner-label {
+  background-image: url(../images/spritesheet.png);
+  background-position: 0px 0px;
+  width: 121px;
+  height: 84px;
+}
+.icon-right-rewind-blue {
+  background-image: url(../images/spritesheet.png);
+  background-position: -386px -94px;
+  width: 35px;
+  height: 35px;
+}
+.icon-right-rewind-grey {
+  background-image: url(../images/spritesheet.png);
+  background-position: -413px -20px;
+  width: 35px;
+  height: 35px;
+}
+.icon-russian_lang {
+  background-image: url(../images/spritesheet.png);
+  background-position: -432px -135px;
+  width: 18px;
+  height: 18px;
+}
+.icon-search {
+  background-image: url(../images/spritesheet.png);
+  background-position: -414px -135px;
+  width: 18px;
+  height: 19px;
+}
+.icon-sort-brends {
+  background-image: url(../images/spritesheet.png);
+  background-position: -421px -94px;
+  width: 35px;
+  height: 26px;
+}
+.icon-swirl-arrow-hover {
+  background-image: url(../images/spritesheet.png);
+  background-position: -306px -135px;
+  width: 31px;
+  height: 27px;
+}
+.icon-swirl-arrow {
+  background-image: url(../images/spritesheet.png);
+  background-position: -275px -135px;
+  width: 31px;
+  height: 27px;
+}
+.icon-thumb {
+  background-image: url(../images/spritesheet.png);
+  background-position: -275px -162px;
+  width: 15px;
+  height: 17px;
+}
+.icon-upstairs-arrow {
+  background-image: url(../images/spritesheet.png);
+  background-position: -448px -20px;
+  width: 10px;
+  height: 10px;
+}
+.icon-visa {
+  background-image: url(../images/spritesheet.png);
+  background-position: -344px -20px;
+  width: 69px;
+  height: 37px;
+}
+.icon-yellow-star {
+  background-image: url(../images/spritesheet.png);
+  background-position: -440px -57px;
+  width: 17px;
+  height: 17px;
+}
+.icon-yellow-stars {
+  background-image: url(../images/spritesheet.png);
+  background-position: -344px -74px;
+  width: 96px;
+  height: 17px;
+}

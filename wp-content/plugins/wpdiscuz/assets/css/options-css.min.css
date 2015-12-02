@@ -1,0 +1,6 @@
+.wc-form tr:nth-child(even){background:#fff}.wc-form tr:nth-child(odd){background:#fbfbfb}.form-table.wc-form-table tr{background:transparent}.wpdiscuz_options_page .wc-phrases-settings-form input[type="text"],.wpdiscuz_options_page .wc-phrases-settings-form textarea{width:300px}.wpdiscuz_wrap {	height: 50px;width: 100%;}.wpdiscuz_progressbar {height: 50px;text-align: center;background: #f00;width: 0;}
+.wpdiscuz-share-buttons {display: inline-block; width: 18px; height: 18px;}
+.wc-form input.wc_share_button {display: none;}
+.wc-form input[type="text"].regular-text{ width:160px; }
+.wc-form .wpdiscuz-option-title {vertical-align: middle;}
+.wc-form .wc-hidden {display: none;}

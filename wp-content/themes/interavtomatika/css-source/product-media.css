@@ -1,0 +1,256 @@
+
+@media (min-width: 1100px) {
+
+}
+@media (max-width: 1099px) {
+
+    .product-feedbacks,.product-characteristics{
+        float: none;
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    .feedback-block {
+        padding-right: 20px;
+    }
+    .product-col-buy-wrap, .product-col-image-wrap {
+        z-index: 1;
+        position: relative;
+    }
+}
+@media (min-width: 950px) and (max-width: 1099px) {
+    .product-col-methods-and-soc-buttons .methods{
+        height: 431px;
+        position: relative;
+    }
+    .product-row.first{
+        height: 430px;
+        position: relative;
+        clear: both;
+    }
+    .product-col-methods-and-soc-buttons {
+         width: auto;
+         float: none;
+         position: absolute;
+         left: 0;
+         width: 100%;
+         top: 0;
+         padding-left: 482px;
+    }
+    .product-col-methods-and-soc-buttons .left-col, .product-col-methods-and-soc-buttons .right-col{
+        width: auto;
+        float: none;
+        margin-top: 25px;
+        margin-left: 20px;
+    }
+    .product-col-methods-and-soc-buttons .soc-buttons {
+        position: absolute;
+        top: 329px;
+        left: 0px;
+        width: 460px;
+    }
+    .product-col-methods-and-soc-buttons .right-col .payment-method-images {
+        right: 0;
+        margin-top: 35px;
+    }
+    .product-page .content {
+        padding-left: 252px;
+        padding-right: 12px;
+        width: 100%;
+    }
+}
+@media (max-width: 999px) {
+    .feedbacks-button{
+        position: static;
+        float: left;
+        margin-bottom: 30px;
+    }
+    .product-title .article {
+        position: static;
+        float: right;
+    }
+    .product-title{
+        padding-right: 0;
+    }
+}
+@media (min-width: 950px) and (max-width: 999px) {
+    .product-col-methods-and-soc-buttons .right-col .payment-method-images {
+        position: absolute;
+        bottom: 27px;
+        left: 20px;
+    }
+    .product-col-methods-and-soc-buttons .right-col .payment-method-images{
+        margin-top: 15px;
+        width: auto;
+    }
+    .product-col-methods-and-soc-buttons .right-col .payment-method-images > div:nth-child(4){
+        margin-top: 10px;
+    }
+    .product-col-methods-and-soc-buttons .right-col .payment-method-images > div:nth-child(3){
+        clear: both;
+        margin-top: 10px;
+    }
+    .product-col-methods-and-soc-buttons .left-col, .product-col-methods-and-soc-buttons .right-col {
+        margin-top: 10px;
+        margin-left: 0px;
+    }
+
+}
+@media (max-width: 949px) {
+
+    .col-image-col-buy-wrap {
+        margin: auto;
+        display: block;
+        width: 460px;
+    }
+    .product-col-buy-wrap {
+        width: 50%;
+        float: right;
+    }
+    .product-col-image-wrap {
+        width: 50%;
+        float: left;
+    }
+    .product-col-image, .product-col-buy {
+        margin: auto;
+        float: none;
+    }
+    .product-col-methods-and-soc-buttons {
+        width: 380px;
+        clear: both;
+        margin: auto;
+        padding: 15px 0 0 0;
+        float: none;
+    }
+}
+@media (max-width: 767px) {
+
+}
+@media (min-width: 640px) and (max-width: 744px), (min-width: 430px) and (max-width: 479px){
+    .product-col-image .small-images .img-wrap{
+        width: 80px;
+        height: 75px;
+    }
+    .product-col-image{
+        width: 160px;
+    }
+    .product-col-buy-wrap{
+        width: 58%;
+    }
+    .product-col-image-wrap{
+        width: 42%;
+    }
+}
+
+
+@media (max-width: 479px) {
+    .product-title .article, .feedbacks-button {
+        float: none;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+    .product-title{
+        text-align: center;
+    }
+    .product-title h1{
+        text-align: left;
+    }
+    .product-title br{
+        display: block;
+    }
+}
+@media (max-width: 429px) {
+    .product-col-image-wrap, .product-col-buy-wrap{
+        float: none;
+        width: 100%;
+    }
+    .product-col-buy-wrap{
+        margin-top: 40px;
+    }
+    .product-col-buy{
+        width: 100%;
+    }
+    .product-col-buy .buy-block {
+        float: none;
+        margin: auto;
+    }
+    .product-col-buy{
+        text-align: center;
+    }
+    .product-col-buy .product-in-stock {
+        display: inline-block;
+        float: none;
+    }
+    .product-col-buy .logo{
+        float: none;
+        margin-right: 40px;
+        vertical-align: top;
+    }
+    .product-col-buy .buy-block{
+        width: 100%;
+        text-align: center;
+        padding: 0;
+    }
+    .product-col-buy .buy-block .icon-cart-white {
+        position: absolute;
+        top: 59px;
+        left: 80px;
+        margin: auto;
+        right: 175px;
+    }
+    .product-col-buy .question-mark {
+        float: none;
+        margin-left: 25px;
+        margin-right: 0;
+    }
+    .product-col-buy .technical-documentation {
+        margin-top: 15px;
+        width: 100%;
+    }
+    .product-col-methods-and-soc-buttons{
+        width: 100%;
+    }
+    .product-col-methods-and-soc-buttons .right-col .payment-method-images{
+        width: auto;
+        right: 0;
+    }
+    .product-col-methods-and-soc-buttons .right-col .payment-method-images > div:nth-child(3) {
+        clear: both;
+        margin-top: 10px;
+    }
+    .product-col-methods-and-soc-buttons .right-col .payment-method-images > div:nth-child(4) {
+        margin-top: 10px;
+    }
+    .product-col-methods-and-soc-buttons .left-col{
+        width: 45%;
+    }
+    .product-col-methods-and-soc-buttons .right-col{
+        width: 55%;
+    }
+    .product-col-methods-and-soc-buttons .soc-buttons{
+        padding-left: 0;
+    }
+    .product-col-methods-and-soc-buttons .soc-buttons .share-info{
+        display: none;
+    }
+    .fb-header .inform-about-problem-wrap {
+        display: inline-block;
+        position: absolute;
+        padding-left: 195px;
+        width: 95%;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        line-height: 35px;
+        vertical-align: middle;
+        height: 35px;
+    }
+
+    .fb-header .inform-about-problem{
+        width: auto;
+    }
+    .product-feedbacks .fb-header{
+        padding-left: 10px;
+    }
+
+}

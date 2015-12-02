@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<node>
+		<category><![CDATA[Автоматика>Контроль, управление и питание>Блоки питания>Однофазные блоки питания]]></category>
+		<product><![CDATA[Блок птания однофазный 6EP1233-1AA00]]></product>
+		<brand><![CDATA[Siemens]]></brand>
+		<articles><![CDATA[6EP1233-1AA00]]></articles>
+		<pdf><![CDATA[6EP1_233-1AA00.pdf]]></pdf>
+		<photo><![CDATA[]]></photo>
+		<imya_opisanie><![CDATA[desc]]></imya_opisanie>
+		<op1><![CDATA[op1]]></op1>
+		<op2><![CDATA[op2]]></op2>
+		<op3><![CDATA[op3]]></op3>
+		<op4><![CDATA[op4]]></op4>
+		<op5><![CDATA[op5]]></op5>
+	</node>
+	<node>
+		<category><![CDATA[Автоматика>Контроль, управление и питание>Кнопки, переключатели, разъединители, контрольные лампы>Кнопки>Кнопки-грибок]]></category>
+		<product><![CDATA[C20GR01]]></product>
+		<brand><![CDATA[BACO]]></brand>
+		<articles><![CDATA[C20GR01]]></articles>
+		<pdf><![CDATA[C20GR01.pdf]]></pdf>
+		<photo><![CDATA[]]></photo>
+		<imya_opisanie><![CDATA[op1]]></imya_opisanie>
+		<op1><![CDATA[]]></op1>
+		<op2><![CDATA[]]></op2>
+		<op3><![CDATA[]]></op3>
+		<op4><![CDATA[]]></op4>
+		<op5><![CDATA[]]></op5>
+	</node>
+	<node>
+		<category><![CDATA[Автоматика>Энкодеры>Инкрементальные энкодеры>Инкрементальные энкодеры серия 580X]]></category>
+		<product><![CDATA[5802.1275.2000]]></product>
+		<brand><![CDATA[Kubler]]></brand>
+		<articles><![CDATA[5802.1275.2000]]></articles>
+		<pdf><![CDATA[5802.1275.2000.pdf]]></pdf>
+		<photo><![CDATA[brand-on-product.png]]></photo>
+		<imya_opisanie><![CDATA[desc]]></imya_opisanie>
+		<op1><![CDATA[]]></op1>
+		<op2><![CDATA[]]></op2>
+		<op3><![CDATA[]]></op3>
+		<op4><![CDATA[]]></op4>
+		<op5><![CDATA[op5]]></op5>
+	</node>
+	<node>
+		<category><![CDATA[Автоматика]]></category>
+		<product><![CDATA[EP9521-]]></product>
+		<brand><![CDATA[beckhoff]]></brand>
+		<articles><![CDATA[EP9521-]]></articles>
+		<pdf><![CDATA[EP9521-.pdf]]></pdf>
+		<photo><![CDATA[brand.png]]></photo>
+		<imya_opisanie><![CDATA[]]></imya_opisanie>
+		<op1><![CDATA[]]></op1>
+		<op2><![CDATA[]]></op2>
+		<op3><![CDATA[]]></op3>
+		<op4><![CDATA[op4]]></op4>
+		<op5><![CDATA[]]></op5>
+	</node>
+	<node>
+		<category><![CDATA[Автоматика>Приводная техника>Product overview Synchronous Servomotors]]></category>
+		<product><![CDATA[AM80xx]]></product>
+		<brand><![CDATA[beckhoff]]></brand>
+		<articles><![CDATA[AM80xx]]></articles>
+		<pdf><![CDATA[AM80xx.pdf]]></pdf>
+		<photo><![CDATA[develop.png]]></photo>
+		<imya_opisanie><![CDATA[]]></imya_opisanie>
+		<op1><![CDATA[]]></op1>
+		<op2><![CDATA[]]></op2>
+		<op3><![CDATA[op3]]></op3>
+		<op4><![CDATA[]]></op4>
+		<op5><![CDATA[]]></op5>
+	</node>
+	<node>
+		<category><![CDATA[Автоматика>Приводная техника]]></category>
+		<product><![CDATA[AT2000-0250]]></product>
+		<brand><![CDATA[beckhoff]]></brand>
+		<articles><![CDATA[AT2000-0250]]></articles>
+		<pdf><![CDATA[AT2000-0250.pdf]]></pdf>
+		<photo><![CDATA[auto.png]]></photo>
+		<imya_opisanie><![CDATA[descr]]></imya_opisanie>
+		<op1><![CDATA[]]></op1>
+		<op2><![CDATA[]]></op2>
+		<op3><![CDATA[]]></op3>
+		<op4><![CDATA[]]></op4>
+		<op5><![CDATA[op5]]></op5>
+	</node>
+</data>
