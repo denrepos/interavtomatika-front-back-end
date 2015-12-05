@@ -19,6 +19,13 @@ require get_template_directory() . '/inc/init.php';
 //switch off admin panel
 show_admin_bar(false);
 
+
+//for url hierarchy
+add_filter( 'woocommerce_taxonomy_args_product_cat', function($args){
+    $args['rewrite']['hierarchical'] = false;
+    return  $args;
+} );
+
 //disable auto update for "all import" plugin
 function filter_plugin_updates( $update ) {
 	$disable_update = array( 'wp-all-import','woocommerce');
@@ -338,7 +345,7 @@ function get_filter_values($category_id)
 }
 
 
-function translitFilterParameters($str,$dir,$term_id = false){
+function translitFilterParameters($str, $dir, $term_id = false){
 
     if( !$term_id && !$term_id = get_queried_object()->term_id ){
         return false;
@@ -374,8 +381,8 @@ function translitFilterParameters($str,$dir,$term_id = false){
 
         }else {
 
-            $rus = array(' ', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я');
-            $lat = array('_', 'A', 'B', 'V', 'G', 'D', 'E', 'E', 'Gh', 'Z', 'I', 'Y', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'C', 'Ch', 'Sh', 'Sch', 'Y', 'Y', 'Y', 'E', 'Yu', 'Ya', 'a', 'b', 'v', 'g', 'd', 'e', 'e', 'gh', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'c', 'ch', 'sh', 'sch', 'y', 'y', 'y', 'e', 'yu', 'ya');
+            $rus = array('/',' ', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я');
+            $lat = array('-','_', 'A', 'B', 'V', 'G', 'D', 'E', 'E', 'Gh', 'Z', 'I', 'Y', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'C', 'Ch', 'Sh', 'Sch', 'Y', 'Y', 'Y', 'E', 'Yu', 'Ya', 'a', 'b', 'v', 'g', 'd', 'e', 'e', 'gh', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'c', 'ch', 'sh', 'sch', 'y', 'y', 'y', 'e', 'yu', 'ya');
 
             $translit = str_replace($rus, $lat, $str);
 
@@ -409,7 +416,7 @@ function translitFilterParameters($str,$dir,$term_id = false){
     
     if($dir == 'decode') {
 
-        return array_search($str,$filter_parameters);
+        return @array_search($str,$filter_parameters);
     }
 }
 
@@ -438,10 +445,51 @@ function ia_filter_query_vars( $query_vars )
     $query_vars[] = 'filter';
     return $query_vars;
 }
+//
+//add_action( 'init', 'process_products_filter' );
+//function process_products_filter() {
+//    PC::debug(get_query_var( 'filter' ));
+//}
 
-add_action( 'init', 'process_products_filter' );
-function process_products_filter() {
-    PC::debug(get_query_var( 'filter' ));
+
+add_action( 'posts_join_paged', 'ia_filter_add_join' );
+function ia_filter_add_join($join)
+{
+
+    global $wp_query;
+    global $wpdb;
+
+    if ($filter_vars = get_query_var('filter')) {
+
+        $term_id = get_term_by('slug', $wp_query->query_vars['product_cat'], 'product_cat')->term_id;
+
+        $filter_vars = explode('/',$filter_vars);
+
+        $reg = array();
+        foreach( $filter_vars as $f_var) {
+
+            $f_var_vals = explode( ';', $f_var );
+            $name = $f_var_vals[0];
+            unset($f_var_vals[0]);
+
+            foreach( $f_var_vals as $f_var_val ) {
+
+                $f_var_val = translitFilterParameters( $f_var_val, 'decode', $term_id);
+
+                if( $f_var_val )
+                    $reg[] = '(:"' . esc_sql($name) . '";[^{]*\{[^}]*:"value";s:[^}]*:"[^}]*' . $f_var_val . '[^}]*";\})';
+            }
+        }
+
+        if($reg) {
+
+            $rlikes = implode('|', $reg);
+
+            return $join . " INNER JOIN " . $wpdb->prefix . "postmeta as prod_attr_postmeta ON ( " . $wpdb->prefix . "posts.ID = prod_attr_postmeta.post_id AND prod_attr_postmeta.meta_key = '_product_attributes' AND prod_attr_postmeta.meta_value REGEXP '" . $rlikes . "' )";
+        }
+    }
+
+    return $join;
 }
 
 

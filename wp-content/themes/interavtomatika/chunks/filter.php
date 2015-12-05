@@ -50,7 +50,7 @@
 
             <div class="filter-item">
                 <label>
-                    <input type="checkbox" name="filter-juice[]" value="<?php echo translitFilterParameters($value,'encode') ?>" class="display-none"/>
+                    <input type="checkbox" name="vyhodnoy_tok[]" value="<?php echo translitFilterParameters($value,'encode') ?>" class="display-none"/>
                     <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
                     <span class="item-name"><?php echo $value ?></span>
                 </label>
