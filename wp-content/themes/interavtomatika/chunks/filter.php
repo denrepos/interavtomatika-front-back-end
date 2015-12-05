@@ -1,3 +1,8 @@
+<?php $term = wp_get_object_terms($post->ID,'product_cat'); ?>
+<?php $filter = get_filter_values($term[0]->term_id); ?>
+
+<?php $brends = get_terms('yith_product_brand'); ?>
+
 <div class="banner filter">
 <div href="#" class="banner-header">
     <span class="banner-header-title">ФИЛЬТР</span>
@@ -12,498 +17,82 @@
 
 <div class="filter-brand">
     <div class="filter-items filter-brand-items" data-filter-class="filter-brand-items">
-        <div class="filter-item">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none" value="Inter"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Inter</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <div class="brand-flag-fr"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none" value="Hydronix"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Hydronx</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <div class="brand-flag-pl"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Asco Numatics</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Dunsoff</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Sco</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">DatalogicF</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Inter</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none" value="Inter"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Inter</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-fr"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none" value="Hydronix"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Hydronx</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-pl"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Asco Numatics</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Dunsoff</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Sco</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">DatalogicF</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Inter</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none" value="Inter"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Inter</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-fr"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none" value="Hydronix"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Hydronx</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-pl"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Asco Numatics</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Dunsoff</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Sco</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">DatalogicF</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Inter</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none" value="Inter"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Inter</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-fr"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none" value="Hydronix"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Hydronx</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-pl"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Asco Numatics</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Dunsoff</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Sco</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">DatalogicF</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Inter</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none" value="Inter"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Inter</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-fr"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none" value="Hydronix"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Hydronx</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-pl"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Asco Numatics</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Dunsoff</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Sco</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">DatalogicF</span>
-            </label>
-        </div>
-        <div class="filter-item" style="display: none">
-            <div class="brand-flag-us"></div>
-            <label>
-                <input type="checkbox" name="filter-brands" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Inter</span>
-            </label>
-        </div>
+
+        <?php foreach ($brends as $brend) { ?>
+
+            <div class="filter-item">
+                <div class="brand-flag icon-brand-flag-<?php echo get_field( 'flag','yith_product_brand_'.$brend->term_id ); ?>"></div>
+                <label>
+                    <input type="checkbox" name="filter-brands" class="display-none" value="<?php echo translitFilterParameters($brend->name,'encode') ?>"/>
+                    <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
+                    <span class="item-name"><?php echo $brend->name ?></span>
+                </label>
+            </div>
+
+        <?php } ?>
+
     </div>
-    <div class="another-brands link-button">Другие бренды (22)</div>
+    <div class="another-brands link-button">Другие бренды (<?php echo count($brends) ?>)</div>
 
-</div>
-
-<div class="filter-phases">
-
-    <div class="banner-content-title">Количество фаз</div>
-    
-    <div class="filter-items filter-phases-items" data-filter-class="filter-phases-items">
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-phases[]" class="display-none" value="1"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Однофазные</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-phases[]" class="display-none" value="3"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Трехфазные</span>
-            </label>
-        </div>
-    </div>
 </div>
 
 <div class="filter-juice">
 
-    <div class="banner-content-title">Ток</div>
+    <div class="banner-content-title"><?php echo qtranxf_useCurrentLanguageIfNotFoundShowAvailable($filter['vyhodnoy_tok']['name']) ?></div>
 
     <div class="filter-items filter-juice-items" data-filter-class="filter-juice-items">
 
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">1A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">1A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">1A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">2A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">2A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">2A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">3A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">3A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">3A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">5A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">5A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">5A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">10A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">10A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">10A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">15A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">15A</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-juice[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">15A</span>
-            </label>
-        </div>
+        <?php $vyhodnoy_tok = $filter['vyhodnoy_tok']['values'] ?>
+        <?php sort( $vyhodnoy_tok, SORT_NUMERIC ) ?>
+        <?php unset( $filter['vyhodnoy_tok'] ) ?>
+
+        <?php foreach( $vyhodnoy_tok as $value ) { ?>
+
+            <div class="filter-item">
+                <label>
+                    <input type="checkbox" name="filter-juice[]" value="<?php echo translitFilterParameters($value,'encode') ?>" class="display-none"/>
+                    <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
+                    <span class="item-name"><?php echo $value ?></span>
+                </label>
+            </div>
+
+        <?php } ?>
+        
     </div>
 
 </div>
 
-<div class="filter-output">
 
-    <div class="banner-content-title">Выход</div>
-    <div class="filter-items filter-output-items" data-filter-class="filter-output-items">
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-output[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">3-32 VDC</span>
-            </label>
+
+<?php foreach( $filter as $key=>$prop) { ?>
+
+    <div class="filter-output">
+
+        <div class="banner-content-title"><?php echo qtranxf_useCurrentLanguageIfNotFoundShowAvailable($prop['name']) ?></div>
+        <div class="filter-items filter-output-items" data-filter-class="filter-output-items">
+
+            <?php sort( $prop['values'], SORT_NUMERIC ); ?>
+            <?php foreach( $prop['values'] as $value ) { ?>
+
+                <?php $value = qtranxf_useCurrentLanguageIfNotFoundShowAvailable($value); ?>
+
+                <div class="filter-item">
+                    <label>
+                        <input type="checkbox" name="<?php echo $key; ?>[]" value="<?php echo translitFilterParameters($value,'encode') ?>" class="display-none"/>
+
+                        <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
+                        <span class="item-name"><?php echo $value; ?></span>
+                    </label>
+                </div>
+
+            <?php } ?>
+
         </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-output[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">4-32 VDC</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-output[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">24-265VAC/24-190VAC</span>
-            </label>
-        </div>
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-output[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">90-280VAC</span>
-            </label>
-        </div>
+
     </div>
-</div>
 
-<div class="filter-radiator">
+<?php } ?>
 
-    <div class="banner-content-title">Со встроенным радиатором</div>
-
-    <div class="filter-items filter-radiator-items" data-filter-class="filter-radiator-items">
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" name="filter-radiator[]" class="display-none"/>
-                <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                <span class="item-name">Да</span>
-            </label>
-        </div>
-    </div>
-</div>
 
 </form>
 

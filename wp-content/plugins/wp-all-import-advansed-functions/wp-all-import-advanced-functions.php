@@ -84,30 +84,34 @@ class AllImportiUnknownFields{
 		add_filter('pmxi_saved_post',function($pid,$rootNode) use ($post_id,$data,$addon){
 
 			global $wpdb;
+            $add_unknown_fields = true;
 			$unknown_fields_from = $data['from']; 
 			$translate_categories = true;  //$data['translate_categories'];
 
- 			//add unknown fields to product attributes
 			if($post_id == $pid && $unknown_fields_from){
-				
-				$attributes = get_post_meta($pid,'_product_attributes'); 
-				$attributes = $attributes[0]; 
 
-				$i = 1;
-				foreach($rootNode[0] as $key => $node){
-					
-					$value = (string)$node;
-					
-					if($unknown_fields_from > $i++) continue; 
-					if(!$value) continue; 
 
-					$attributes[ $key ] = array(
-						'name'          => self::translate(trim($_SESSION['allimport_translit_fields'][$key])),
-						'value'         => $value   //translate 
-					);		
-				}
-				
-				if( $attributes ) update_post_meta($pid, '_product_attributes',$attributes);
+                //add unknown fields to product attributes
+                if($add_unknown_fields) {
+                    $attributes = get_post_meta($pid, '_product_attributes');
+                    $attributes = $attributes[0];
+
+                    $i = 1;
+                    foreach ($rootNode[0] as $key => $node) {
+
+                        $value = (string)$node;
+
+                        if ($unknown_fields_from > $i++) continue;
+                        if (!$value) continue;
+
+                        $attributes[$key] = array(
+                            'name' => self::translate(trim($_SESSION['allimport_translit_fields'][$key])),
+                            'value' => $value   //translate
+                        );
+                    }
+
+                    if ($attributes) update_post_meta($pid, '_product_attributes', $attributes);
+                }
 
 				//translate categories
 				if($translate_categories){
@@ -150,8 +154,8 @@ class AllImportiUnknownFields{
 		//if lang mark for yandex and qtranslate is different
 		$tags_to = array('ru-uk' => 'ua');
 
-		$tag_from = $tags_from[$dir] ? '[:'.$tags_from[$dir].']' : '[:'.substr($dir,0,2).']';
-		$tag_to = $tags_to[$dir] ? '[:'.$tags_to[$dir].']' : '[:'.substr($dir,3).']';
+		$tag_from = isset($tags_from[$dir]) ? '[:'.$tags_from[$dir].']' : '[:'.substr($dir,0,2).']';
+		$tag_to = isset($tags_to[$dir]) ? '[:'.$tags_to[$dir].']' : '[:'.substr($dir,3).']';
 		
 		if(strrpos($text,$tag_to) !== false){ 
 			return $text;
@@ -172,8 +176,9 @@ class AllImportiUnknownFields{
 			return $text;
 		}
 		
-		$transient = $wpdb->get_row('SELECT `to` FROM `wp_allimport_translate_transients` WHERE `direction` = "'.$dir.'" AND `from` = "'.$translate.'"');
-		
+		$transient = $wpdb->get_row('SELECT `to` FROM `'.$wpdb->prefix.'allimport_translate_transients` WHERE `direction` = "'.$dir.'" AND `from` = "'.esc_sql( $translate ).'"');
+
+        $yandex = array();
 		if($transient->to){
 			
 			$yandex_translate = $transient->to;
@@ -195,7 +200,7 @@ class AllImportiUnknownFields{
 
 			$wpdb->insert(
 				'wp_allimport_translate_transients',
-				array( 'direction' => $dir, 'from' => $translate, 'to' =>  $yandex_translate)
+				array( 'direction' => $dir, 'from' => esc_sql( $translate ), 'to' =>  esc_sql( $yandex_translate ) )
 			);
 			
 		}

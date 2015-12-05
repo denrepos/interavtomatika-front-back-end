@@ -287,20 +287,8 @@ a.link-as-text {
 .breadcrumbs a{
     cursor: pointer;
 }
-.brand-flag-us{
-    background: url(../images/flags.png) no-repeat center -55px;
-    width: 28px;
-    height: 19px;
-}
-.brand-flag-fr{
-    background: url(../images/flags.png) no-repeat center -84px;
-    width: 28px;
-    height: 19px;
-}
-.brand-flag-pl{
-    background: url(../images/flags.png) no-repeat center -111px;
-    width: 28px;
-    height: 19px;
+.brand-flag {
+    min-width: 28px;
 }
 .dummy-checkbox {
     height: 15px;
@@ -540,6 +528,9 @@ input:checked+label.custom-radio {
     display: inline-block;
     float: right;
     margin-top: 18px;
+}
+.stockroom.bespoke{
+    color: #C82323;
 }
 header{
     margin: auto;
@@ -2444,8 +2435,8 @@ select::-ms-expand {
 }
 .catalog-previews {
     background-color: #f0f0e1;
-    height: 430px;
     width: 860px;
+    padding-bottom: 11px;
 }
 .catalog-page .price-banner{
     margin-top: 0;
@@ -2623,8 +2614,11 @@ label input:checked + .dummy-checkbox + .item-name{
 .banner.filter .filter-juice .banner-content-title{
     margin: 0;
 }
+.filter-juice{
+    width: 200px;
+}
 .filter-juice .filter-item {
-    width: 32%;
+    min-width: 32%;
     margin-top: 10px;
     display: inline-block;
 }
@@ -3574,6 +3568,11 @@ label input:checked + .dummy-checkbox + .item-name{
     }
     .search-results-products .social-buttons, .woocommerce-pagination {
         display: none;
+    }
+    .wc-pagination-wrap {
+        display: block;
+        top: -60px;
+        position: relative;
     }
 }
 /*md*/

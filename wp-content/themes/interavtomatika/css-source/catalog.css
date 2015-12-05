@@ -1,7 +1,7 @@
 .catalog-previews {
     background-color: #f0f0e1;
-    height: 430px;
     width: 860px;
+    padding-bottom: 11px;
 }
 .catalog-page .price-banner{
     margin-top: 0;

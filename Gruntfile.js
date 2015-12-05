@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 		  all: {
 			src: 'wp-content/themes/interavtomatika/images/sprites/*.png',
 			dest: 'wp-content/themes/interavtomatika/images/spritesheet.png',
-			destCss: 'wp-content/themes/interavtomatika/css-source/sprites.css'
+			destCss: 'wp-content/themes/interavtomatika/css/sprites.css'
 		  }
 		},
 

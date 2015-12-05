@@ -138,17 +138,21 @@ global $post;
                                         <div class="product-number"><?php echo $product->get_sku(); ?></div>
                                         <div class="manufacturer">
                                             <div class="wrap">
-                                                <?php $pdf_path = $product->get_attributes()->value; ?>
+                                                <?php $pdf = get_pdf_info($product); ?>
                                                 <div class="name"><span><?php echo $brand->name; ?></span></div>
-                                                <a href="<?php echo content_url('uploads/docs/'.$pdf_path); ?>" class="file">
+                                                <a href="<?php echo $pdf['url']; ?>" class="file">
                                                     <div class="small-image-pdf">PDF</div>
-                                                    <div class="size-text">(<?php echo getSize(wp_upload_dir()->basedir.$pdf_path);  ?> kb)</div>
+                                                    <div class="size-text">(<?php echo $pdf['size'];  ?>)</div>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="stockroom">В наличии</div>
+                                <?php if( $product->is_in_stock() ) { ?>
+                                    <div class="stockroom">В наличии</div>
+                                <?php } else { ?>
+                                    <div class="stockroom bespoke">Под заказ</div>
+                                <?php } ?>
                                 <div class="cart">
                                     <div class="wrap">
                                         <div class="cart-image icon-empty-cart"></div>
@@ -188,42 +192,7 @@ global $post;
 
             <aside class="col-sm-4 display-block-less-640 display-none">
 
-                <div class="banner list with-numbers category-list">
-
-                    <a href="#" class="banner-header">
-                        <span class="banner-header-title">РАЗДЕЛЫ</span>
-                    </a>
-
-                    <div class="banner-content align-left">
-
-                        <a href="#" class="active">
-                            <div class="glyphicon glyphicon-menu-right"></div>
-                            <span class="text-wrap">Автоматика</span>
-                            <span class="number">4502</span>
-                        </a>
-                        <a href="#">
-                            <div class="glyphicon glyphicon-menu-right"></div>
-                            <span class="text-wrap">Электроника</span>
-                            <span class="number">772</span>
-                        </a>
-                        <a href="#">
-                            <div class="glyphicon glyphicon-menu-right"></div>
-                            <span class="text-wrap">Гидравлика и пневматика</span>
-                            <span class="number">2312</span>
-                        </a>
-                        <a href="#">
-                            <div class="glyphicon glyphicon-menu-right"></div>
-                            <span class="text-wrap">Производство ТЕНов</span>
-                            <span class="number">4502</span>
-                        </a>
-                        <a href="#">
-                            <div class="glyphicon glyphicon-menu-right"></div>
-                            <span class="text-wrap">Нащи разработки</span>
-                            <span class="number">4502</span>
-                        </a>
-                    </div>
-
-                </div>
+                <?php get_template_part('chunks/products-banners'); ?>
 
             </aside>
 

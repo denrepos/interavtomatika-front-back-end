@@ -196,8 +196,21 @@ function ia_get_categories($parent_id = false){
 
 
 // helpers
+function get_pdf_info($product){
 
-function getSize($file){
+    $pdf = array();
+    $attributes = $product->get_attributes();
+    $pdf['name'] = $attributes['pdf']['value'];
+    $pdf['url'] = content_url('uploads/docs/'.$pdf['name']);
+
+    $up_dir = wp_upload_dir();
+    $pdf['size'] = get_size($up_dir['basedir'].'/docs/'.$pdf['name']);
+
+    return $pdf;
+}
+
+
+function get_size($file){
     $bytes = @filesize($file);
     if($bytes) {
         $s = array('b', 'Kb', 'Mb', 'Gb');
@@ -290,3 +303,184 @@ function options_textbox_callback($args) {  // Textbox Callback
     $option = get_option($args[0]);
     echo '<textarea id="'. $args[0] .'" name="'. $args[0] .'">' . $option . '</textarea>';
 }
+
+// products filter
+
+function get_filter_values($category_id)
+{
+
+    global $wpdb;
+    
+    $sql = $wpdb->prepare( 'SELECT * FROM `'.$wpdb->prefix.'postmeta` as pm
+        JOIN '.$wpdb->prefix.'term_relationships as tr ON (tr.object_id = pm.post_id )
+        JOIN '.$wpdb->prefix.'posts as p ON (p.ID = pm.post_id AND p.post_type = "product" AND p.post_status = "publish" )
+        WHERE tr.term_taxonomy_id  = %d AND pm.meta_key = "_product_attributes"',$category_id);
+    $results = $wpdb->get_results( $sql );
+
+    $filter = array();
+    foreach($results as $res){
+
+        $attributes = unserialize($res->meta_value);
+        unset($attributes['pdf']);
+
+        foreach($attributes as $key => $val){
+
+            if( gettype( @array_search(  $val['value'], $filter[$key]['values'] ) ) != 'integer' ){
+
+                $filter[$key]['name'] = $val['name'];
+                $filter[$key]['values'][] = $val['value'];
+            }
+        }
+
+    }
+
+    return $filter;
+}
+
+
+function translitFilterParameters($str,$dir,$term_id = false){
+
+    if( !$term_id && !$term_id = get_queried_object()->term_id ){
+        return false;
+    }
+
+    global $wpdb;
+
+    if( !$filter_parameters = wp_cache_get( 'filter_translit_'.$term_id )){
+
+        $results = $wpdb->get_results( 'SELECT * FROM `'.$wpdb->prefix.'filter_parameters_translit` WHERE `term_id` = '.$term_id );
+        
+        if( $results[0] && $filter_parameters = unserialize( $results[0]->filter_parameters ) ){
+
+            wp_cache_set( 'filter_translit_'.$term_id, $filter_parameters );
+
+            if(count($filter_parameters) > 1000){
+                $up_res = $wpdb->update(
+                    $wpdb->prefix.'filter_parameters_translit',
+                    array( 'filter_parameters' => '' ),
+                    array( 'term_id' => $term_id )
+                );
+            }
+        }
+    }
+
+
+
+    if($dir == 'encode') {
+
+        if( $filter_parameters[$str] ){
+
+            return $filter_parameters[$str];
+
+        }else {
+
+            $rus = array(' ', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я');
+            $lat = array('_', 'A', 'B', 'V', 'G', 'D', 'E', 'E', 'Gh', 'Z', 'I', 'Y', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'C', 'Ch', 'Sh', 'Sch', 'Y', 'Y', 'Y', 'E', 'Yu', 'Ya', 'a', 'b', 'v', 'g', 'd', 'e', 'e', 'gh', 'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'c', 'ch', 'sh', 'sch', 'y', 'y', 'y', 'e', 'yu', 'ya');
+
+            $translit = str_replace($rus, $lat, $str);
+
+            $translit = urlencode($translit);
+
+            $filter_parameters[$str] = $translit;
+
+            wp_cache_set( 'filter_translit_'.$term_id, $filter_parameters );
+
+            $filter_parameters_ser = serialize( $filter_parameters );
+
+            $up_res = $wpdb->update(
+                $wpdb->prefix.'filter_parameters_translit',
+                array( 'filter_parameters' => $filter_parameters_ser ),
+                array( 'term_id' => $term_id ),
+                array( '%s' ),
+                array( '%d' )
+            );
+
+            if(!$up_res){
+                $wpdb->insert(
+                    $wpdb->prefix.'filter_parameters_translit',
+                    array( 'term_id' => $term_id, 'filter_parameters' => $filter_parameters_ser  )
+                );
+            }
+
+            return $translit;
+        }
+    }
+
+    
+    if($dir == 'decode') {
+
+        return array_search($str,$filter_parameters);
+    }
+}
+
+
+add_action('init', 'addRoutes');
+
+function addRoutes(){
+global $wp_rewrite;
+//    add_rewrite_tag('%filter%', '.*');
+    flush_rewrite_rules();
+//    PC::debug($wp_rewrite);
+}
+
+add_filter( 'rewrite_rules_array','ia_filter_rewrite_rules' );
+function ia_filter_rewrite_rules($rules){
+
+    $newrules = array();
+    $newrules['catalog/(.+?)/filter/(.+?)/page/?([0-9]{1,})/?$'] = 'index.php?product_cat=$matches[1]&filter=$matches[2]&paged=$matches[3]';
+    $newrules['catalog/(.+?)/filter/(.+?)/?$'] = 'index.php?product_cat=$matches[1]&filter=$matches[2]';
+    return $newrules + $rules;
+}
+
+add_filter( 'query_vars', 'ia_filter_query_vars' );
+function ia_filter_query_vars( $query_vars )
+{
+    $query_vars[] = 'filter';
+    return $query_vars;
+}
+
+add_action( 'init', 'process_products_filter' );
+function process_products_filter() {
+    PC::debug(get_query_var( 'filter' ));
+}
+
+
+
+
+
+// add .html to end
+//function true_add_html_on_pages() {
+//    // при работе с $wp_rewrite, как и с $wpdb, в первую очередь глобально определяем класс
+//    global $wp_rewrite;
+//
+//    // метод $wp_rewrite->get_page_permastruct() возвращает нам структуру URL страниц, по умолчанию %pagename%
+//    // функцией strpos() мы делаем проверку, не присутствует ли уже расширение .html (%pagename%.html)
+//    if ( !strpos($wp_rewrite->get_page_permastruct(), '.html')){
+//        // если не присутствует, то добавляем его
+//        $wp_rewrite->page_structure = $wp_rewrite->page_structure . '.html';
+//        // метод flush_rules() применяет сделанные изменения
+//        $wp_rewrite->flush_rules();
+//    }
+//}
+//
+//// вешаем на хук init
+//add_action('init', 'true_add_html_on_pages', -1);
+//
+//// вроде бы всё ок, вот только WordPress добавляет слэши на конце и у нас получается %pagename%.html/ - сейчас мы это исправим
+//function true_remove_slash_on_pages( $url, $post_type){
+//    global $wp_rewrite;
+//
+//    // $wp_rewrite->using_permalinks() возвращает true, если постоянные ссылки используются на сайте
+//    // $wp_rewrite->use_trailing_slashes равен true, если слэши добавляются на конце URL
+//    // нам нужно удалить слэши только с страниц, поэтому $post_type должен быть равен page
+//    if ($wp_rewrite->using_permalinks() && $wp_rewrite->use_trailing_slashes==true && $post_type == 'page'){
+//        // удаляем слэш
+//        return untrailingslashit( $url );
+//    } else {
+//        // возвращаем всё как есть
+//        return $url;
+//    }
+//}
+//
+//// вешаем на фильтр user_trailingslashit
+//add_filter('user_trailingslashit', 'true_remove_slash_on_pages',70,2);

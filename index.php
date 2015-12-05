@@ -35,3 +35,4 @@ $connector->startEvalRequestsListener();
 require( dirname( __FILE__ ) . '/wp-blog-header.php' );
 
 // PC::debug(get_included_files());
+// PC::debug(get_num_queries());

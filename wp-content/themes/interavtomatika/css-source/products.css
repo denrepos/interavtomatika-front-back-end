@@ -134,8 +134,11 @@ label input:checked + .dummy-checkbox + .item-name{
 .banner.filter .filter-juice .banner-content-title{
     margin: 0;
 }
+.filter-juice{
+    width: 200px;
+}
 .filter-juice .filter-item {
-    width: 32%;
+    min-width: 32%;
     margin-top: 10px;
     display: inline-block;
 }

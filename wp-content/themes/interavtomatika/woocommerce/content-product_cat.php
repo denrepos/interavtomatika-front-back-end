@@ -23,7 +23,7 @@ global $woocommerce_loop, $post;
 
         <?php $term = get_queried_object(); ?>
         <?php $term_id = $term->term_id; ?>
-<?php print_r($term_id); ?>
+
         <?php show_breadcrumbs($term_id,'product_cat'); ?>
 
         <div class="content-aside-wrap">
@@ -35,7 +35,7 @@ global $woocommerce_loop, $post;
 
                 <div class="slider-window-wrap catalog-previews-wrap">
                     <div class="slider-window " data-scroll-step="1">
-                        <div class="catalog-previews slider-container">
+                        <div class="catalog-previews slider-container clearfix">
 
 
                             <?php foreach ($product_categories as $key => $category) { ?>

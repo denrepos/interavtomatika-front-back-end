@@ -995,127 +995,39 @@ jQuery(function($){
 
 
     //ajax pagination
-    $('.advanced-pagination-all-wrap').bind('DOMNodeInserted', function(e) {
+
+    hide_load_more_pagination_if_end();
+
+    $( document ).ajaxComplete(function(q,w,e) {
+
+        $('.woocommerce-pagination:visible').replaceWith($($.parseHTML(w.responseText)).find('.woocommerce-pagination'));
+
         var length = $(this).find('.advanced-pagination-item').length;
         var first = parseInt($(this).find('.found-title .first').text());
         $(this).find('.found-title .last').text(first + length - 1);
-    });
 
-    if(!$('.woocommerce-pagination:visible .current').parent().next().find(':not(.next)')[0]){
-        $('.pagination-loading-more:visible').css({visibility: 'hidden'});
-    }
+        hide_load_more_pagination_if_end();
+    });
 
     $('.pagination-loading-more').click(function () {
 
         $('.malinky-load-more a').click();
         $(".malinky-ajax-pagination-loading").show();
 
-        var middle = false;
-        var dots = $($('.woocommerce-pagination:visible')[0]).find('.dots');
-        var dotsParent = $(dots[1]).parent();
-        var lastMiddle = parseInt(dotsParent.prev().find('.page-numbers').text());
-        var beginning = ($($('.woocommerce-pagination:visible li .page-numbers:not(.prev)')[1]).text() == 2);
-
-        if(!dots[1] && !beginning){
-
-            switchNextCurrent();
-
-        }else if(beginning){
-
-            $('.woocommerce-pagination:visible').each(function(){
-
-                var lastMiddleFrom_1 = $(this).find('.dots').parent().prev();
-                var num = parseInt(lastMiddleFrom_1.find('.page-numbers').text()) + 1;
-
-                var clone = lastMiddleFrom_1.clone();
-
-                var  href = clone.find('.page-numbers').attr('href');
-                if (href) {
-
-                    clone.find('.page-numbers').attr({
-                        'href': href.match(/.*\//) + num
-                    });
-                }
-                clone.find('.page-numbers').text(num);
-
-                lastMiddleFrom_1.after(clone);
-
-                switchNextCurrent();
-
-                if(num > 6){
-                    $($(this).find('li')[2]).replaceWith($($(this).find('.dots').parent()[0]).clone());
-                }
-
-
-            });
-
-        }else{
-
-
-            $('.woocommerce-pagination li').each(function () {
-
-                if ($(this).find('.dots')[0]) {
-
-                    middle = !middle;
-                    return true;
-                }
-
-                if (middle) {
-
-                    var middleItem = $(this).find('.page-numbers');
-
-                    nextNumber = parseInt($(this).find('.page-numbers').text()) + 1;
-
-                    middleItem.text(nextNumber);
-
-                    var href = middleItem.attr('href');
-
-                    changeHref(middleItem,href,nextNumber);
-
-
-                }
-
-            });
-
-        }
-
-        if( lastMiddle + 2 == parseInt(dotsParent.next().find('.page-numbers').text()) ){
-
-            $(dots[1]).parent().remove();
-
-        }
-
-
-        if(!$('.woocommerce-pagination:visible .current').parent().next().find(':not(.next)')[0]){
-            $('.pagination-loading-more:visible').css({visibility: 'hidden'});
-        }
-
-        function changeHref(obj,href,num){
-
-            if (href) {
-
-                obj.attr({
-                    'href': href.match(/.*\//) + num
-                });
-            }
-        }
-
-        function switchNextCurrent(){
-            var current = $('.woocommerce-pagination:visible .current');
-            current.removeClass('current');
-
-            var currentNext = current.parent().next().find('.page-numbers');
-            currentNext.addClass('current').prev();
-
-            var href = currentNext.attr('href');
-
-            changeHref(current,href,current.text());
-            replaceTagName(current,'a');
-            replaceTagName(currentNext,'span');
-
-        }
-
     });
+
+    function hide_load_more_pagination_if_end(){
+
+        var paginationAllWrap = $('.advanced-pagination-all-wrap');
+
+        var last = paginationAllWrap.find('.found-title .last').text();
+        var total = paginationAllWrap.find('.found-title .total').text();
+
+        if(last == total){
+            $('.pagination-loading-more').css({visibility: 'hidden'});
+        }
+
+    }
 
 });
 

@@ -31,6 +31,11 @@
     .search-results-products .social-buttons, .woocommerce-pagination {
         display: none;
     }
+    .wc-pagination-wrap {
+        display: block;
+        top: -60px;
+        position: relative;
+    }
 }
 /*md*/
 @media (max-width: 767px) {
