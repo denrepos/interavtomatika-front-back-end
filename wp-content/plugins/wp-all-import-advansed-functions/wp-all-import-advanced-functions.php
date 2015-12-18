@@ -7,12 +7,6 @@ Version: 1.0
 Author: den
 */
 
- 
-  
-// PC::debug($wpdb->get_results('select * FROM wp_allimport_translate_transients'),'sql');
-	// PC::debug($wpdb->last_error,'er');	
-
-  
 
 // Create settings page
 
@@ -124,10 +118,19 @@ class AllImportiUnknownFields{
 					$wpdb_res = $wpdb->get_results($query); 
 
 					self::ai_addon_update_terms($wpdb_res);   	
-				}	
+				}
 			}
-		
-		},10,2);	
+
+
+            $term_ids = array();
+            foreach( get_terms('product_cat') as $term ){
+
+                $term_ids[] = $term->term_id;
+            }
+
+            wp_update_term_count_now( $term_ids, 'product_cat' );
+
+        },10,2);
 		
 
 
@@ -242,14 +245,14 @@ class AllImportiUnknownFields{
 				
 			}
 		
-			$wpdb->update(''.$wpdb->prefix.'terms',array('name'=>$row->name),array('term_id'=>$row->term_id)); //translate
-		
+			$wpdb->update(''.$wpdb->prefix.'terms',array('name'=>self::translate($row->name)),array('term_id'=>$row->term_id)); //translate
+
 			$query = 'SELECT wt.term_id, wt.name, wtt.parent  FROM '.$wpdb->prefix.'term_taxonomy wtt 
 			  JOIN '.$wpdb->prefix.'terms wt ON(wt.term_id = wtt.term_id)
 			  WHERE wtt.term_taxonomy_id = '.$row->parent.' AND wtt.taxonomy = "product_cat"';
  
 			$row_res = $wpdb->get_results($query);  
-			
+
 			self::ai_addon_update_terms($row_res);
 		}		
 	}

@@ -1,12 +1,14 @@
-<?php $term = wp_get_object_terms($post->ID,'product_cat'); ?>
-<?php $filter = get_filter_values($term[0]->term_id); ?>
+<?php $category_id = ia_get_current_product_cutegory_id() ?>
+<?php $filter = get_filter_values($category_id); ?>
+<?php global $ia_filter_url_vars; ?>
 
-<?php $brends = get_terms('yith_product_brand'); ?>
+<?php $brands = get_terms('yith_product_brand'); ?>
 
 <div class="banner filter">
-<div href="#" class="banner-header">
+<div class="banner-header">
     <span class="banner-header-title">ФИЛЬТР</span>
-    <span class="float-right pointer">Сбросить</span>
+    <a href="<?php echo get_term_link($category_id, 'product_cat') ?>" class="float-right pointer filter-reset">Сбросить</a>
+
 </div>
 
 <div class="banner-content align-left">
@@ -18,41 +20,59 @@
 <div class="filter-brand">
     <div class="filter-items filter-brand-items" data-filter-class="filter-brand-items">
 
-        <?php foreach ($brends as $brend) { ?>
+        <?php $brands = $filter['brand']['values'] ?>
+        <?php unset($filter['brand']) ?>
 
-            <div class="filter-item">
-                <div class="brand-flag icon-brand-flag-<?php echo get_field( 'flag','yith_product_brand_'.$brend->term_id ); ?>"></div>
+        <?php foreach ($brands as $name => $prop) { ?>
+
+            <?php $checked = $prop['active'] ? 'checked="checked"' : '' ?>
+            <?php $flag = $prop['flag']; ?>
+            <?php $url = $prop['url']; ?>
+            <?php $translit_name = $prop['translit_name']; ?>
+            <?php $not_available_class = $prop['available'] ? '' : 'not-available' ; ?>
+
+            <div class="filter-item <?php echo $not_available_class; ?>">
+                <div class="brand-flag icon-brand-flag-<?php echo $flag; ?>"></div>
                 <label>
-                    <input type="checkbox" name="filter-brands" class="display-none" value="<?php echo translitFilterParameters($brend->name,'encode') ?>"/>
+                    <input type="checkbox" name="filter-brands" class="display-none" value="<?php echo $translit_name; ?>" <?php echo $checked; ?>/>
                     <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                    <span class="item-name"><?php echo $brend->name ?></span>
+                    <a href="<?php echo $url; ?>" class="item-name"><?php echo $name ?></a>
                 </label>
             </div>
 
         <?php } ?>
 
     </div>
-    <div class="another-brands link-button">Другие бренды (<?php echo count($brends) ?>)</div>
+    <div class="another-brands link-button">Другие бренды (<?php echo count($brands) ?>)</div>
 
 </div>
 
 <div class="filter-juice">
 
-    <div class="banner-content-title"><?php echo qtranxf_useCurrentLanguageIfNotFoundShowAvailable($filter['vyhodnoy_tok']['name']) ?></div>
+    <?php $foreach_key = 'vyhodnoy_tok'; ?>
+    <?php $foreach_val = $filter['vyhodnoy_tok']; ?>
 
-    <div class="filter-items filter-juice-items" data-filter-class="filter-juice-items">
+    <?php $vyhodnoy_tok = $filter[$foreach_key]['values'] ? $filter[$foreach_key]['values'] : array(); ?>
 
-        <?php $vyhodnoy_tok = $filter['vyhodnoy_tok']['values'] ?>
-        <?php sort( $vyhodnoy_tok, SORT_NUMERIC ) ?>
-        <?php unset( $filter['vyhodnoy_tok'] ) ?>
+    <div class="banner-content-title"><?php echo qtranxf_useCurrentLanguageIfNotFoundShowAvailable($filter[$foreach_key]['name']) ?></div>
 
-        <?php foreach( $vyhodnoy_tok as $value ) { ?>
+    <?php unset( $filter[$foreach_key] ) ?>
 
-            <div class="filter-item">
+    <div class="filter-items filter-<?php echo $foreach_key; ?>-items" data-filter-class="filter-<?php echo $foreach_key; ?>-items">
+
+
+        <?php foreach( $vyhodnoy_tok as $value => $props) { ?>
+
+            <?php $checked = $props['active'] ? 'checked="checked"' : '' ?>
+            <?php $href = $props['available'] ? 'href="'.$props['url'].'"' : ''; ?>
+            <?php $translit_name = $props['translit_name']; ?>
+            <?php $not_available_class = $props['available'] ? '' : 'not-available' ; ?>
+
+            <div class="filter-item <?php echo $not_available_class; ?>">
                 <label>
-                    <input type="checkbox" name="vyhodnoy_tok[]" value="<?php echo translitFilterParameters($value,'encode') ?>" class="display-none"/>
+                    <input type="checkbox" name="vyhodnoy_tok[]" value="<?php echo $translit_name; ?>" <?php echo $checked ?> class="display-none"/>
                     <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                    <span class="item-name"><?php echo $value ?></span>
+                    <a <?php echo $href; ?> class="item-name"><?php echo $value ?></a>
                 </label>
             </div>
 
@@ -69,19 +89,24 @@
     <div class="filter-output">
 
         <div class="banner-content-title"><?php echo qtranxf_useCurrentLanguageIfNotFoundShowAvailable($prop['name']) ?></div>
-        <div class="filter-items filter-output-items" data-filter-class="filter-output-items">
+        <div class="filter-items filter-<?php echo $key; ?>-items" data-filter-class="filter-<?php echo $key; ?>-items">
 
-            <?php sort( $prop['values'], SORT_NUMERIC ); ?>
-            <?php foreach( $prop['values'] as $value ) { ?>
+            <?php foreach( $prop['values'] as $value => $props ) { ?>
+
+                <?php $checked = $props['active'] ? 'checked="checked"' : '' ?>
+                <?php $href = $props['available'] ? 'href="'.$props['url'].'"' : ''; ?>
+                <?php $translit_name = $props['translit_name']; ?>
+                <?php $not_available_class = $props['available'] ? '' : 'not-available' ; ?>
 
                 <?php $value = qtranxf_useCurrentLanguageIfNotFoundShowAvailable($value); ?>
 
-                <div class="filter-item">
+                <div class="filter-item <?php echo $not_available_class; ?>">
                     <label>
-                        <input type="checkbox" name="<?php echo $key; ?>[]" value="<?php echo translitFilterParameters($value,'encode') ?>" class="display-none"/>
+                        <input type="checkbox" name="<?php echo $key; ?>[]" value="<?php echo $translit_name; ?>" <?php echo $checked ?>
+                               class="display-none"/>
 
                         <div class="dummy-checkbox glyphicon glyphicon-ok"></div>
-                        <span class="item-name"><?php echo $value; ?></span>
+                        <a <?php echo $href; ?> class="item-name"><?php echo $value; ?></a>
                     </label>
                 </div>
 

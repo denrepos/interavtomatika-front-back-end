@@ -42,8 +42,13 @@
 }
 .preview-title {
     text-align: center;
-    margin-top: 20px;
     font-size: 13px;
+    line-height: 15px;
+    vertical-align: middle;
+    display: inline-block;
+}
+.catalog-previews .general-preview .link-as-text{
+    line-height: 63px;
 }
 .automation-components .right-under-previews{
     margin-top: 39px;

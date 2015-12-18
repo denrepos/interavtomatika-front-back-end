@@ -423,6 +423,27 @@ jQuery(function($){
         }
     });
 
+    //filter progress opacity
+    $('#filter .filter-item:not(.not-available) .item-name, .filter-reset, .products-page .in-stock label a').click(function(){
+
+        $('#filter, .search-results-products').animate({opacity: 0.4},'fast');
+
+    });
+    $('.filter-parameters-delete').on('click', '.item', function(){
+        $('#filter, .search-results-products').animate({opacity: 0.4},'fast');
+    });
+
+    $('.products-page select[name=orderby]').change(function(){
+        $('#filter, .search-results-products').animate({opacity: 0.4},'fast');
+    });
+
+    $('#filter .filter-item.not-available').click(function (e) {
+        e.stopImmediatePropagation();
+        e.stopPropagation();
+        e.preventDefault();
+        return false;
+    });
+
     //make checkbox as radio
     $('.filter-brand .filter-item').click(function(){
         if($(this).find('input:checked')[0]){
@@ -432,6 +453,7 @@ jQuery(function($){
             $('.filter-brand .filter-item input').not($(this).find('input')).prop('checked',false);
 
             changedElement.trigger('change');
+
         }
     });
 
@@ -440,12 +462,18 @@ jQuery(function($){
     //display checked filter items under title
     $('#filter input').change(function(){
 
-        var chacked = $(this).is(':checked');
-        var index = $(this).closest('.filter-item').index()+1;
-        var name = $(this).closest('.filter-item').find('.item-name').text();
-        var filterSetClass = $(this).closest('.filter-items').attr('data-filter-class');
+        displayCheckedInTitle(this);
+
+    });
+
+    function displayCheckedInTitle(context){
+
+        var chacked = $(context).is(':checked');
+        var index = $(context).closest('.filter-item').index()+1;
+        var name = $(context).closest('.filter-item').find('.item-name').text();
+        var filterSetClass = $(context).closest('.filter-items').attr('data-filter-class');
         var filterParametersDelete = $('.filter-parameters-delete');
-        var bodyHeight = $('body').height();
+        //var bodyHeight = $('body').height();
 
         if(chacked){
             var greaterItems = filterParametersDelete.find('.'+filterSetClass+' .item').filter(function(el,item){
@@ -473,7 +501,7 @@ jQuery(function($){
         //
         //    $('body,html').scrollTop(scrollTop);
         //}
-    });
+    }
 
     //remove filter items
 
@@ -483,8 +511,9 @@ jQuery(function($){
         var filterSetClass = $(target).parent().attr('class');
         var index = $(target).data('index');
 
-        $('.'+filterSetClass+' .filter-item:nth-child('+index+') input').prop('checked',false);
         $(target).remove();
+
+        window.location.href = $('.'+filterSetClass+' .filter-item:nth-child('+index+') input').prop('checked',false).nextAll('a').attr('href');
     });
 
     //expand brands in filter

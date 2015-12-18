@@ -62,5 +62,3 @@
     </script>
 
 </head>
-
-<body <?php body_class(); ?>>

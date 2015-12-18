@@ -102,6 +102,10 @@ select::-ms-expand {
     margin: 0;
     cursor: pointer;
 }
+.in-stock-wrap label a{
+    height: 100%;
+    display: inline-block;
+}
 .in-stock-wrap label div{
     border: 1px solid rgb(205, 203, 203);
     height: 14px;

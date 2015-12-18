@@ -21,10 +21,7 @@ global $woocommerce_loop, $post;
         <?php do_action( 'woocommerce_before_main_content' ); ?>
         <?php do_action( 'woocommerce_archive_description' ); ?>
 
-        <?php $term = get_queried_object(); ?>
-        <?php $term_id = $term->term_id; ?>
-
-        <?php show_breadcrumbs($term_id,'product_cat'); ?>
+        <?php show_breadcrumbs('product_cat'); ?>
 
         <div class="content-aside-wrap">
             <div class="content col-lg-16 col-lg-push-4">
@@ -33,27 +30,21 @@ global $woocommerce_loop, $post;
                     <a class="back" href="#" onclick="history.back();return true">Назад</a>
                 </div>
 
-                <div class="slider-window-wrap catalog-previews-wrap">
-                    <div class="slider-window " data-scroll-step="1">
+                <div class="catalog-previews-wrap">
+                    <div class=" " data-scroll-step="1">
                         <div class="catalog-previews slider-container clearfix">
 
 
                             <?php foreach ($product_categories as $key => $category) { ?>
-
-
-                                <?php if( !($key & 1)) { ?><div class="general-preview-wrap"> <?php } ?>
 
                                     <div class="general-preview">
                                         <?php $cat_link = get_term_link( $category->slug, 'product_cat' ); ?>
                                         <div class="preview-product-count"><?php echo $category->count ?></div>
                                         <a href="<?php echo $cat_link; ?>" class="img-wrap"><?php do_action( 'woocommerce_before_subcategory_title', $category ); ?></a>
                                         <a class="link-as-text" href="<?php echo $cat_link ?>">
-                                            <div class="preview-title"><?php echo $category->cat_name;?></div>
+                                            <div class="preview-title"><?php echo qtranxf_useCurrentLanguageIfNotFoundShowAvailable ( $category->cat_name );?></div>
                                         </a>
                                     </div>
-
-                                <?php if( $key & 1 || !$product_categories[$key+1]) { ?></div> <?php } ?>
-
 
                             <?php } ?>
 

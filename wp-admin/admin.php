@@ -1,22 +1,24 @@
 <?php
 
 require_once(__DIR__ . '/PhpConsole/__autoload.php');
-PhpConsole\Handler::getInstance()->start();  // start handling PHP errors & exceptions
-$connector = PhpConsole\Connector::getInstance();
-$connector->getDebugDispatcher()->setDumper(
-	new PhpConsole\Dumper(500, 1000, 4000) // set new dumper with levelLimit=2, itemsCountLimit=10, itemSizeLimit=10
-);
-$connector->setPassword('QWEqweASDasd');
-$evalProvider = $connector->getEvalDispatcher()->getEvalProvider();
-$evalProvider->disableFileAccessByOpenBaseDir();
-PhpConsole\Helper::register();
 
-$connector->startEvalRequestsListener();
+if(!PhpConsole\Handler::getInstance()->isStarted()) {
+
+    PhpConsole\Handler::getInstance()->start();  // start handling PHP errors & exceptions
+    $connector = PhpConsole\Connector::getInstance();
+    $connector->getDebugDispatcher()->setDumper(
+        new PhpConsole\Dumper(500, 1000, 4000) // set new dumper with levelLimit=2, itemsCountLimit=10, itemSizeLimit=10
+    );
+    $connector->setPassword('QWEqweASDasd');
+    $evalProvider = $connector->getEvalDispatcher()->getEvalProvider();
+    $evalProvider->disableFileAccessByOpenBaseDir();
+    PhpConsole\Helper::register();
+
+    $connector->startEvalRequestsListener();
 
 // PC::loggingInFile();
 
-
-
+}
 /**
  * WordPress Administration Bootstrap
  *

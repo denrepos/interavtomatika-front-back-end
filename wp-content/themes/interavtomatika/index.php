@@ -19,7 +19,7 @@
 	                                        <div class="preview-product-count"><?php echo $category->count ?></div>
 	                                        <a href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>" class="img-wrap"><?php do_action( 'woocommerce_before_subcategory_title', $category ); ?></a>
 	                                        <a class="link-as-text" href="#">
-	                                            <div class="preview-title"><?php echo $category->cat_name;?></div>
+	                                            <div class="preview-title"><?php echo qtranxf_useCurrentLanguageIfNotFoundShowAvailable( $category->cat_name );?></div>
 	                                        </a>
 	                                    </div>
 

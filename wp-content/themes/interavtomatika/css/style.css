@@ -1210,8 +1210,13 @@ div#cboxContent {
 }
 .preview-title {
     text-align: center;
-    margin-top: 20px;
     font-size: 13px;
+    line-height: 15px;
+    vertical-align: middle;
+    display: inline-block;
+}
+.catalog-previews .general-preview .link-as-text{
+    line-height: 63px;
 }
 .automation-components .right-under-previews{
     margin-top: 39px;
@@ -2138,6 +2143,10 @@ select::-ms-expand {
     margin: 0;
     cursor: pointer;
 }
+.in-stock-wrap label a{
+    height: 100%;
+    display: inline-block;
+}
 .in-stock-wrap label div{
     border: 1px solid rgb(205, 203, 203);
     height: 14px;
@@ -2563,6 +2572,11 @@ select::-ms-expand {
     color: inherit;
     cursor: pointer;
     vertical-align: middle;
+    position: relative;
+    left: -25px;
+    display: inline-block;
+    padding-left: 25px;
+    margin-right: -25px;
 }
 .banner.filter .item-name:hover{
     text-decoration: underline;
@@ -2610,6 +2624,17 @@ label input:checked + .dummy-checkbox + .item-name{
 }
 .filter-item {
     margin-top: 10px;
+}
+.filter-output .filter-item {
+    display: inline-block;
+    margin-right: 20px;
+}
+#filter .filter-item.not-available a{
+    text-decoration: none;
+    cursor: default;
+}
+.filter-item.not-available {
+    opacity: 0.3;
 }
 .banner.filter .filter-juice .banner-content-title{
     margin: 0;

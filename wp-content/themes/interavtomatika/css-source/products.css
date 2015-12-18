@@ -83,6 +83,11 @@
     color: inherit;
     cursor: pointer;
     vertical-align: middle;
+    position: relative;
+    left: -25px;
+    display: inline-block;
+    padding-left: 25px;
+    margin-right: -25px;
 }
 .banner.filter .item-name:hover{
     text-decoration: underline;
@@ -130,6 +135,17 @@ label input:checked + .dummy-checkbox + .item-name{
 }
 .filter-item {
     margin-top: 10px;
+}
+.filter-output .filter-item {
+    display: inline-block;
+    margin-right: 20px;
+}
+#filter .filter-item.not-available a{
+    text-decoration: none;
+    cursor: default;
+}
+.filter-item.not-available {
+    opacity: 0.3;
 }
 .banner.filter .filter-juice .banner-content-title{
     margin: 0;
